@@ -1,72 +1,40 @@
 <template>
-  <div class="container">
+  <div class='container'>
     <div>
       <Logo />
-      <h1 class="title">hello-nuxt</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <h1 class='title'>hello-nuxt</h1>
+      <div> {{ bNav }}</div>
+      <div> {{ nav }}</div>
+      <div>
+        <button @click='setUser'>setUser</button>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import { Route } from "vue-router";
+<script lang='ts'>
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { State, Getter, Action, Mutation } from 'vuex-class'
+
 
 @Component
 export default class Index extends Vue {
-  @Watch("$route", { immediate: true, deep: true })
-  onRouteChange(route: Route) {
-    console.log(route.path);
+  @Prop() readonly error: string | undefined = undefined
+
+  @State(state => state.bNav) bNav
+
+  @State('user') user
+
+  @Getter('getNav') nav
+
+  @Action('user/setUser') setUser
+
+  @Mutation('setNav') setNav
+
+  get xxx() {
+    return user
   }
+
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

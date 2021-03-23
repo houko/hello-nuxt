@@ -17,6 +17,7 @@
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
+    "vuex-class": "^0.3.2",
     "@nuxt/types": "^2.15.3",
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.7.0",
     "prettier": "^2.2.1",
+    "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   }
