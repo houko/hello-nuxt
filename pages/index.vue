@@ -1,40 +1,40 @@
 <template>
-  <div class='container'>
+  <div class="container">
     <div>
       <Logo />
-      <h1 class='title'>hello-nuxt</h1>
-      <div> {{ bNav }}</div>
-      <div> {{ nav }}</div>
+      <h1 class="title">hello-nuxt</h1>
+      <div>{{ user }}</div>
+      <div>{{ bNav }}</div>
+      <div>{{ nav }}</div>
       <div>
-        <button @click='setUser'>setUser</button>
+        <button @click="setUser">setUser</button>
       </div>
     </div>
   </div>
 </template>
 
-<script lang='ts'>
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { State, Getter, Action, Mutation } from 'vuex-class'
-
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { Action, Getter, Mutation, State } from "vuex-class";
+import { User } from "~/store/user";
 
 @Component
 export default class Index extends Vue {
-  @Prop() readonly error: string | undefined = undefined
+  @Prop() readonly error: string | undefined = undefined;
 
-  @State(state => state.bNav) bNav
+  @State((state) => state.bNav) bNav: boolean | undefined;
 
-  @State('user') user
+  @State("user") user?: User;
 
-  @Getter('getNav') nav
+  @Getter("getNav") nav!: string;
 
-  @Action('user/setUser') setUser
+  @Action("user/setUser") setUser!: (payload: User) => void;
 
-  @Mutation('setNav') setNav
+  @Mutation("setNav") setNav!: (payload: boolean) => void;
 
-  get xxx() {
-    return user
-  }
-
+  // computed计算属性=> 前面加上get
+  // get xxx() {
+  //   return user;
+  // }
 }
 </script>
-
